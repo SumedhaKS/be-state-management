@@ -5,11 +5,21 @@ interface Game {
     blackPlayer: string;
     moves: string[];
 }
-
+// singleton
 export class GameManager {
     games: Game[] = [];
-    constructor() {
+    private static instance: GameManager;
+
+    private constructor() {
         this.games = [];
+    }
+
+    static getInstance() {
+        if (this.instance) {        // this.instance == GameManager.instance => both works
+            return this.instance;
+        }
+        this.instance = new GameManager();
+        return this.instance;
     }
 
     addMove(gameId: string, move: string) {
@@ -34,4 +44,6 @@ export class GameManager {
 
 }
 
-export const gameManager = new GameManager();
+export const gameManager = GameManager.getInstance();
+
+// export const gameManager = new GameManager();
