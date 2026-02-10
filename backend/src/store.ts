@@ -1,6 +1,6 @@
 
 interface Game {
-    id: number;
+    id: string;
     whitePlayer: string;
     blackPlayer: string;
     moves: string[];
